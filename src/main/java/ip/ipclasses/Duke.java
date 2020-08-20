@@ -1,6 +1,15 @@
+package ip.ipclasses.java;
+
 import java.util.Scanner;
 
+
 public class Duke {
+
+    private static Task[] list= new Task[100];
+    private static int list_counter=0;
+
+
+
     public static void main(String[] args) {
         String logo =
 //                  " ____        _        \n"
@@ -27,9 +36,14 @@ public class Duke {
                 "____________________________________________________________\n";
         System.out.println(startMessage);
         Scanner input = new Scanner(System.in);
+
+
+
+
         while (true) {
 
             String echo = input.nextLine();
+
 
             if(echo.equals("bye")) {
                 String bye_msg = "          ____________________________________________________________\n" +
@@ -38,15 +52,34 @@ public class Duke {
                 System.out.println(bye_msg);
                 break;
             }
+            else if(echo.equals("list")){
+                printList();
+//
+            }
             else {
+               list[list_counter]= new Task(echo);
                 String echo_msg ="          ____________________________________________________________\n" +
-                    "           "+echo+"\n"+
+                    "           "+"added: "+echo+"\n"+
                     "          ____________________________________________________________\n";
                 System.out.println(echo_msg);
+                list_counter++;
             }
+
         }
 
 
 
+    }
+
+    public static void printList(){
+        System.out.println("          ____________________________________________________________\n");
+        if(list_counter>0) {
+            for (int i = 0; i < list_counter; i++) {
+                System.out.println("          " + (i + 1) + "." + list[i].description + "\n");
+            }
+        }
+        else
+            System.out.println("          " +"Nothing added!");
+        System.out.println("          ____________________________________________________________\n");
     }
 }

@@ -89,7 +89,9 @@ public class Duke {
             int listNum = Integer.parseInt(word);
             if(listNum<=list_counter && listNum>0) {
                 list[listNum - 1].isDone = true;
-                printList();
+//                printList();
+                System.out.println("          " + "["+ list[listNum-1].getStatusIcon()+ "] "
+                        + list[listNum-1].description );
             }
             else {
                 System.out.println("          invalid index!");

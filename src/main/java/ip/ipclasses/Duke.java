@@ -90,8 +90,12 @@ public class Duke {
             if(listNum<=list_counter && listNum>0) {
                 list[listNum - 1].isDone = true;
 //                printList();
+                System.out.println("          ____________________________________________________________");
+                System.out.println("          Nice! I've marked this task as done:");
                 System.out.println("          " + "["+ list[listNum-1].getStatusIcon()+ "] "
                         + list[listNum-1].description );
+                System.out.println("          ____________________________________________________________");
+
             }
             else {
                 System.out.println("          invalid index!");

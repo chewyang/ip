@@ -35,11 +35,9 @@ public class Duke {
 
 
         while (true) {
-
             String echo = input.nextLine().trim();
-            if (echo.equals("")) continue;
-
             String[] doneTokens = echo.split(" ");
+            if (echo.equals("")) continue;
 
             if(echo.equals("bye")) {
                 byeMsg();
@@ -52,7 +50,24 @@ public class Duke {
                 checkValidIndex(doneTokens[1]);
             }
             else {
-               addNew(echo);
+                switch (doneTokens[0]){
+                case ("todo"):
+                    String dsc = echo.substring(echo.indexOf(" ") + 1);//obtains description of todo task
+                    System.out.println(dsc);
+                    addNewTask(dsc);
+                    break;
+                case("deadline"):
+                    dsc = echo.substring(echo.indexOf(" ")+1,echo.indexOf(" /by ")); //obtains description of deadlined task
+                    String deadline = echo.substring(echo.indexOf("/by")+4); //obtains the deadline string
+                    addNewDeadline(dsc,deadline);
+                    break;
+                case("event"):
+                    dsc = echo.substring(echo.indexOf(" ")+1,echo.indexOf(" /at ")); //obtains description of timed task
+                    String time = echo.substring(echo.indexOf("/at")+4); //obtains the time string
+                    addNewEvent(dsc,time);
+                    break;
+                }
+
             }
 
         }
@@ -67,8 +82,8 @@ public class Duke {
         if(list_counter>0) {
             System.out.println("          Here are the tasks in your list:");
             for (int i = 0; i < list_counter; i++) {
-                System.out.println("          " +(i + 1)+ ".["+ list[i].getStatusIcon()+ "] "
-                        + list[i].description );
+                System.out.println("          " +(i + 1)+"."+list[i].printTask());// ".["+ list[i].getStatusIcon()+ "] "
+//                        + list[i].description );
             }
         }
         else {
@@ -106,14 +121,22 @@ public class Duke {
         }
     }
 
-    public static void addNew (String description){
-        list[list_counter]= new Task(description);
-        String echo_msg ="          ____________________________________________________________\n" +
-                "           "+"added: "+description+"\n"+
-                "          ____________________________________________________________";
-        System.out.println(echo_msg);
+    public static void addNewTask (String description){
+        list[list_counter]= new Todo(description);
         list_counter++;
     }
+
+    public static void addNewDeadline(String dsc, String deadline){
+        list[list_counter]= new Deadline(dsc, deadline);
+        list_counter++;
+    }
+
+    public static void addNewEvent(String dsc, String time){
+        list[list_counter]= new Event(dsc, time);
+        list_counter++;
+    }
+
+
 }
 
 

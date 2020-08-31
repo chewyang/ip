@@ -1,16 +1,13 @@
-package ip.ipclasses;
-
-public class Deadline extends Task{
-    protected String deadline;
+public class Event extends Task{
+    protected String time;
 
 
-    public Deadline(String description, String deadline) {
+    public Event(String description, String time) {
         super(description);
-        this.deadline=deadline;
+        this.time =time;
         String echo_msg ="          ____________________________________________________________\n" +
                 "          Got it. I've added this task:\n"+
                 "          "+printTask()+"\n"+
-//                "           "+"added: "+description+"\n"+
                 "          Now you have "+ Task.taskCounter +" in the list.\n"+
                 "          ____________________________________________________________";
 
@@ -20,7 +17,7 @@ public class Deadline extends Task{
 
     @Override
     public String printTask() {
-        return ("[D]"+"["+ this.getStatusIcon()+ "] "
-                + this.description+" (by: "+this.deadline+")" );
+        return ("[E]"+"["+ this.getStatusIcon()+ "] "
+                + this.description+" (at: "+this.time +")" );
     }
 }

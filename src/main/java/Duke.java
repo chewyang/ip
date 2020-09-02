@@ -6,8 +6,6 @@ public class Duke {
     private static Task[] tasks = new Task[100];
     private static int taskCounter =0;
 
-
-
     public static void main(String[] args) {
 
         startMsg();
@@ -35,7 +33,6 @@ public class Duke {
                 case ("todo"):
                     //obtains description of todo task
                     String dsc = command.substring(command.indexOf(" ") + 1);
-//                    System.out.println(dsc);
                     addNewTodo(dsc);
                     break;
                 case("deadline"):
@@ -52,6 +49,8 @@ public class Duke {
                     String time = command.substring(command.indexOf("/at")+4);
                     addNewEvent(dsc,time);
                     break;
+                default:
+                    System.out.println("invalid command!");
                 }
 
             }
@@ -63,11 +62,13 @@ public class Duke {
     }
 
     public static void startMsg() {
-//        String logo =" ____  __  __  _  _  ____ \n" +
-//                "(  _ \\(  )(  )( )/ )( ___)\n" +
-//                " )(_) ))(__)(  )  (  )__) \n" +
-//                "(____/(______)(_)\\_)(____)";
-//        System.out.println("Hello from\n" + logo);
+        String logo ="    .___     __\n" +
+                "  __| _/_ __|  | __ ____\n" +
+                " / __ |  |  \\  |/ // __ \\\n" +
+                "/ /_/ |  |  /    <\\  ___/\n" +
+                "\\____ |____/|__|_ \\\\___  >\n" +
+                "     \\/          \\/    \\/";
+        System.out.println("Hello from\n" + logo);
 
         String startMessage ="____________________________________________________________\n" +
                 " Hello! I'm Duke\n" +

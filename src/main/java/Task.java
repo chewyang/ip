@@ -3,8 +3,6 @@ public class Task {
     protected boolean isDone;
     protected static int taskCounter;
 
-
-
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -15,10 +13,9 @@ public class Task {
         return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
     }
 
-    public String printTask(){
+    @Override
+    public String toString() {
         return ("["+ this.getStatusIcon()+ "] "
                 + this.description );
     }
-
-
 }

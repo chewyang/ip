@@ -2,56 +2,52 @@ import java.util.Scanner;
 
 public class Duke {
 
-    private static Task[] tasks = new Task[100];
-    private static int taskCounter =0;
-    public static String indent = "          ";
+    protected static Task[] tasks = new Task[100];
+    protected static String indent = "          ";
+    protected static int taskCounter=0;
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws DukeException {
+        Task task = null;
         printStartMsg();
         Scanner input = new Scanner(System.in);
-
         while (input.hasNextLine()) {
-
             String command = input.nextLine().trim();
-            String[] cmdTokens = command.split(" ");
+            String firstCmd = Command.getFirstCmd(command);
 
-            switch (cmdTokens[0]){
+            switch (firstCmd) {
             case ("bye"):
                 printByeMsg();
                 break;
-            case("list"):
+            case ("list"):
                 printList();
+                taskCounter--;
                 break;
-            case("done"):
-                checkValidIndex(command.substring(command.indexOf(" ")+1));
+            case ("done"):
+                checkValidIndex(command.substring(command.indexOf(" ") + 1));
                 break;
             case ("todo"):
-                //obtains description of todo task
-                String dsc = command.substring(command.indexOf(" ") + 1);
-                addNewTodo(dsc);
+                task = Command.getTodo(command);
                 break;
-            case("deadline"):
-                //obtains description of deadlined task
-                dsc = command.substring(command.indexOf(" ")+1,command.indexOf(" /by "));
-                //obtains the deadline string
-                String deadline = command.substring(command.indexOf("/by")+4);
-                addNewDeadline(dsc,deadline);
+            case ("deadline"):
+                task = Command.getDeadline(command);
                 break;
-            case("event"):
-                //obtains description of timed task
-                dsc = command.substring(command.indexOf(" ")+1,command.indexOf(" /at "));
-                //obtains the time string
-                String time = command.substring(command.indexOf("/at")+4);
-                addNewEvent(dsc,time);
+            case ("event"):
+                task = Command.getEvent(command);
                 break;
             default:
                 printLn("invalid command!");
                 break;
             }
+            if(task!=null)
+            addNewTask(task);
+
 
         }
-
+    }
+    
+    public static void addNewTask(Task task){
+        tasks[taskCounter] = task;
+        taskCounter++;
     }
 
 
@@ -81,8 +77,9 @@ public class Duke {
         printDivider();
         if(taskCounter >0) {
             printLn("Here are the tasks in your list:");
+
             for (int i = 0; i < taskCounter; i++) {
-                printLn((i + 1)+"."+ tasks[i].toString());
+                printLn((i + 1) +"."+ tasks[i].toString());
             }
         }
         else {
@@ -90,7 +87,6 @@ public class Duke {
         }
         printDivider();
     }
-
 
     public static void checkValidIndex(String word) {
         try{
@@ -114,20 +110,6 @@ public class Duke {
     }
 
 
-    public static void addNewTodo(String description) {
-        tasks[taskCounter]= new Todo(description);
-        taskCounter++;
-    }
-
-    public static void addNewDeadline(String dsc, String deadline) {
-        tasks[taskCounter]= new Deadline(dsc, deadline);
-        taskCounter++;
-    }
-
-    public static void addNewEvent(String dsc, String time) {
-        tasks[taskCounter]= new Event(dsc, time);
-        taskCounter++;
-    }
 
     public static void printDivider() {
         System.out.println(indent+"____________________________________________________________");

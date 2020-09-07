@@ -12,7 +12,7 @@
           ____________________________________________________________
           Got it. I've added this task:
           [T][?] borrow book
-           Now you have 1 in the list.
+          Now you have 1 in the list.
           ____________________________________________________________
           ____________________________________________________________
           Here are the tasks in your list:

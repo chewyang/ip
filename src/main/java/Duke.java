@@ -18,8 +18,6 @@ public class Duke {
             String[] cmdTokens = command.split(" ");
 
             switch (cmdTokens[0]){
-            case (""):
-                continue;
             case ("bye"):
                 printByeMsg();
                 break;
@@ -27,7 +25,7 @@ public class Duke {
                 printList();
                 break;
             case("done"):
-                checkValidIndex(cmdTokens[1]);
+                checkValidIndex(command.substring(command.indexOf(" ")+1));
                 break;
             case ("todo"):
                 //obtains description of todo task
@@ -50,14 +48,12 @@ public class Duke {
                 break;
             default:
                 printLn("invalid command!");
+                break;
             }
 
         }
 
     }
-
-
-
 
 
     public static void printStartMsg() {
@@ -74,18 +70,20 @@ public class Duke {
         printDivider();
     }
 
-    public static void printByeMsg(){
+
+    public static void printByeMsg() {
         printDivider();
         printLn("Bye, see you again!");
         printDivider();
     }
 
-    public static void printList(){
+
+    public static void printList() {
         printDivider();
         if(taskCounter >0) {
             printLn("Here are the tasks in your list:");
             for (int i = 0; i < taskCounter; i++) {
-                printLn((i + 1)+"."+ tasks[i].printTask());
+                printLn((i + 1)+"."+ tasks[i].toString());
             }
         }
         else {
@@ -95,8 +93,7 @@ public class Duke {
     }
 
 
-
-    public static void checkValidIndex(String word){
+    public static void checkValidIndex(String word) {
         try{
             int listNum = Integer.parseInt(word);
 
@@ -117,25 +114,27 @@ public class Duke {
         }
     }
 
-    public static void addNewTodo(String description){
+
+    public static void addNewTodo(String description) {
         tasks[taskCounter]= new Todo(description);
         taskCounter++;
     }
 
-    public static void addNewDeadline(String dsc, String deadline){
+    public static void addNewDeadline(String dsc, String deadline) {
         tasks[taskCounter]= new Deadline(dsc, deadline);
         taskCounter++;
     }
 
-    public static void addNewEvent(String dsc, String time){
+    public static void addNewEvent(String dsc, String time) {
         tasks[taskCounter]= new Event(dsc, time);
         taskCounter++;
     }
 
-    public static void printDivider(){
+    public static void printDivider() {
         System.out.println(indent+"____________________________________________________________");
     }
-    public static void printLn(String string){
+
+    public static void printLn(String string) {
         System.out.println(indent+ string);
     }
 

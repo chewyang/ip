@@ -28,3 +28,16 @@
           [E][?] project meeting (at: Mon 2-4pm)
           Now you have 3 in the list.
           ____________________________________________________________
+          Deadline field cannot be empty!
+          Missing '/by' keyword!
+          Missing deadline!
+          Event field cannot be empty!
+          Missing '/at' keyword!
+          Missing time!
+          ____________________________________________________________
+          Here are the tasks in your list:
+          1.[T][?] borrow book
+          2.[T][?] borrow book
+          3.[D][?] return book (by: Sunday)
+          4.[E][?] project meeting (at: Mon 2-4pm)
+          ____________________________________________________________

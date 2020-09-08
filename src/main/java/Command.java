@@ -1,14 +1,11 @@
 import java.util.Scanner;
 
-public class Command{
+
+public class Command {
     protected static String indent = "          ";
 
 
-    public Command(){
-
-    }
-
-    public static Deadline getDeadline(String command){
+    public static Deadline addDeadline(String command) {
         String description = null;
         try {
             command.substring(0, command.indexOf(" "));
@@ -17,6 +14,7 @@ public class Command{
             return null;
         }
         try {
+            //obtains description of deadline task
             description = command.substring(command.indexOf(" ") + 1, command.indexOf(" /by"));
 
         }catch (StringIndexOutOfBoundsException e ) {
@@ -24,6 +22,7 @@ public class Command{
             return null;
         }
         try {
+            //obtains the deadline
             String deadline = command.substring(command.indexOf("/by") + 4);
             return new Deadline(description, deadline);
 
@@ -34,7 +33,7 @@ public class Command{
         return null;
     }
 
-    public static Event getEvent(String command){
+    public static Event addEvent(String command) {
         String description=null;
         try {
             command.substring(0, command.indexOf(" "));
@@ -60,34 +59,24 @@ public class Command{
         return null;
     }
 
-    public static Task getTodo(String command){
+    public static Task addTodo(String command) {
         try{
             command.substring(0,command.indexOf(" "));
             String description = command.substring(command.indexOf(" ") + 1);
             return new Todo(description);
         }catch (StringIndexOutOfBoundsException e){
             printLn("Todo field cannot be empty!");
-
         }
         return null;
     }
 
+
+
+
     public static String getFirstCmd(String command){
             return command.split(" ")[0];
-
     }
 
-    public static String getDescription(String command) throws DukeException{
-        String firstCmd = getFirstCmd(command);
-        String description = null;
-        try {
-            description = command.substring(command.indexOf(firstCmd) + firstCmd.length()).trim();
-            return description;
-        }catch(NullPointerException e){
-            printLn("Todo field cannot be empty!");
-        }
-      return description;
-    }
     public static void printLn(String string) {
         System.out.println(indent+ string);
     }

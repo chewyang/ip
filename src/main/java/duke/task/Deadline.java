@@ -1,17 +1,22 @@
-public class Todo extends Task {
+package duke.task;
 
-    public Todo(String description) {
+public class Deadline extends Task {
+    protected String deadline;
+
+
+    public Deadline(String description, String deadline) {
         super(description);
-        printTodoMsg(description);
+        this.deadline=deadline;
+        printDeadlineMsg(deadline);
     }
 
     @Override
     public String toString() {
-        return ("[T]"+"["+ this.getStatusIcon()+ "] "
-                + this.description );
+        return ("[D]"+"["+ this.getStatusIcon()+ "] "
+                + this.description+" (by: "+this.deadline+")" );
     }
 
-    public void printTodoMsg(String description) {
+    public void printDeadlineMsg(String deadline) {
         String echo_msg ="          ____________________________________________________________\n" +
                 "          Got it. I've added this task:\n"+
                 "          "+toString()+"\n"+

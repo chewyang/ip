@@ -1,3 +1,6 @@
+package duke;
+
+import duke.task.Task;
 import java.util.Scanner;
 
 public class Duke {
@@ -7,12 +10,12 @@ public class Duke {
     protected static int taskCounter=0;
 
     public static void main(String[] args) {
-        Task task = null;
-        printStartMsg();
+        Task task = null;        printStartMsg();
         Scanner input = new Scanner(System.in);
+        String firstCmd="";
         while (input.hasNextLine()) {
             String command = input.nextLine().trim();
-            String firstCmd = Command.getFirstCmd(command);
+            firstCmd = Command.getFirstCmd(command);
 
             switch (firstCmd) {
             case ("bye"):
@@ -41,6 +44,7 @@ public class Duke {
                 addNewTask(task);
                 task=null;
             }
+            if(firstCmd.equals("bye"))break;
 
 
 
@@ -62,7 +66,7 @@ public class Duke {
                 indent+"     \\/          \\/    \\/";
         printLn("Hello from\n" + logo);
         printDivider();
-        printLn("Hello! I'm Duke\n" +
+        printLn("Hello! I'm duke.Duke\n" +
                 indent+ "What can I do for you?");
         printDivider();
     }

@@ -6,7 +6,7 @@ public class Duke {
     protected static String indent = "          ";
     protected static int taskCounter=0;
 
-    public static void main(String[] args) throws DukeException {
+    public static void main(String[] args) {
         Task task = null;
         printStartMsg();
         Scanner input = new Scanner(System.in);
@@ -20,32 +20,34 @@ public class Duke {
                 break;
             case ("list"):
                 printList();
-                taskCounter--;
                 break;
             case ("done"):
                 checkValidIndex(command.substring(command.indexOf(" ") + 1));
                 break;
             case ("todo"):
-                task = Command.getTodo(command);
+                task = Command.addTodo(command);
                 break;
             case ("deadline"):
-                task = Command.getDeadline(command);
+                task = Command.addDeadline(command);
                 break;
             case ("event"):
-                task = Command.getEvent(command);
+                task = Command.addEvent(command);
                 break;
             default:
                 printLn("invalid command!");
                 break;
             }
-            if(task!=null)
-            addNewTask(task);
+            if(task!=null){
+                addNewTask(task);
+                task=null;
+            }
+
 
 
         }
     }
     
-    public static void addNewTask(Task task){
+    public static void addNewTask(Task task) {
         tasks[taskCounter] = task;
         taskCounter++;
     }
@@ -108,6 +110,7 @@ public class Duke {
             System.out.println(indent+"invalid index!");
         }
     }
+
 
 
 

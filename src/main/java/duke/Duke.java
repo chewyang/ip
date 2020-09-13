@@ -1,11 +1,13 @@
 package duke;
 
 import duke.task.Task;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
 
-    protected static Task[] tasks = new Task[100];
+    protected static ArrayList<Task> tasks = new ArrayList<>();
     protected static String indent = "          ";
     protected static int taskCounter=0;
 
@@ -52,7 +54,7 @@ public class Duke {
     }
     
     public static void addNewTask(Task task) {
-        tasks[taskCounter] = task;
+        tasks.add(task);
         taskCounter++;
     }
 
@@ -64,9 +66,9 @@ public class Duke {
                 indent+"/ /_/ |  |  /    <\\  ___/\n" +
                 indent+"\\____ |____/|__|_ \\\\___  >\n" +
                 indent+"     \\/          \\/    \\/";
-        printLn("Hello from\n" + logo);
+        printLn("Hello from asdfff\n" + logo);
         printDivider();
-        printLn("Hello! I'm duke.Duke\n" +
+        printLn("Hello! I'm duke.\n" +
                 indent+ "What can I do for you?");
         printDivider();
     }
@@ -85,7 +87,7 @@ public class Duke {
             printLn("Here are the tasks in your list:");
 
             for (int i = 0; i < taskCounter; i++) {
-                printLn((i + 1) +"."+ tasks[i].toString());
+                printLn((i + 1) +"."+ tasks.get(i).toString());
             }
         }
         else {
@@ -99,11 +101,11 @@ public class Duke {
             int listNum = Integer.parseInt(word);
 
             if(listNum<= taskCounter && listNum>0) {
-                tasks[listNum - 1].isDone = true;
+                tasks.get(listNum - 1).isDone = true;
                 printDivider();
                 printLn("Nice! I've marked this task as done:");
-                printLn("["+ tasks[listNum-1].getStatusIcon()+ "] "
-                        + tasks[listNum-1].description );
+                printLn("["+ tasks.get(listNum-1).getStatusIcon()+ "] "
+                        + tasks.get(listNum-1).description );
                 printDivider();
             }
             else {

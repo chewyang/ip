@@ -4,16 +4,24 @@ public class Event extends Task {
     protected String time;
 
 
-    public Event(String description, String time) {
+    public Event(String description, String time, boolean isFromFile) {
         super(description);
         this.time =time;
-        printEventMsg(description);
+        if(!isFromFile) {
+            printEventMsg(description);
+        }
     }
 
     @Override
     public String toString() {
         return ("[E]"+"["+ this.getStatusIcon()+ "] "
                 + this.description+" (at: "+this.time +")" );
+    }
+    @Override
+    public String toStringFile(){
+        int isDoneInt = isDone? 1:0;
+        return ("E | "+ isDoneInt + " | "
+                + this.description +" | "+this.time);
     }
 
     public void printEventMsg(String description) {

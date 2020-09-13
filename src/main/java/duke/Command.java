@@ -29,7 +29,7 @@ public class Command {
         try {
             //obtains the deadline
             String deadline = command.substring(command.indexOf("/by") + 4);
-            return new Deadline(description, deadline);
+            return new Deadline(description, deadline, false);
 
         }catch (StringIndexOutOfBoundsException e){
             printLn("Missing deadline!");
@@ -56,7 +56,7 @@ public class Command {
         try{
             //obtains the time string
             String time = command.substring(command.indexOf("/at") + 4);
-            return new Event(description, time);
+            return new Event(description, time, false);
         }catch (StringIndexOutOfBoundsException e){
             printLn("Missing time!");
 
@@ -68,7 +68,7 @@ public class Command {
         try{
             command.substring(0,command.indexOf(" "));
             String description = command.substring(command.indexOf(" ") + 1);
-            return new Todo(description);
+            return new Todo(description, false);
         }catch (StringIndexOutOfBoundsException e){
             printLn("Todo field cannot be empty!");
         }

@@ -1,19 +1,29 @@
 package duke.task;
 
+import duke.Duke;
+
 public class Deadline extends Task {
     protected String deadline;
 
 
-    public Deadline(String description, String deadline) {
+    public Deadline(String description, String deadline, boolean isFromFile) {
         super(description);
         this.deadline=deadline;
-        printDeadlineMsg(deadline);
+        if(!isFromFile) {
+            printDeadlineMsg(description);
+        }
     }
 
     @Override
     public String toString() {
         return ("[D]"+"["+ this.getStatusIcon()+ "] "
                 + this.description+" (by: "+this.deadline+")" );
+    }
+    @Override
+    public String toStringFile(){
+        int isDoneInt = isDone? 1:0;
+        return ("D | "+ isDoneInt + " | "
+                + this.description +" | "+this.deadline);
     }
 
     public void printDeadlineMsg(String deadline) {

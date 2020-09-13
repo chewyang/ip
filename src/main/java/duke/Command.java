@@ -77,7 +77,6 @@ public class Command {
 
 
 
-
     public static String getFirstCmd(String command){
             return command.split(" ")[0];
     }

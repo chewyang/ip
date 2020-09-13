@@ -38,6 +38,10 @@ public class Duke {
             case ("event"):
                 task = Command.addEvent(command);
                 break;
+            case ("delete"):
+                deleteTask(command.substring(command.indexOf(" ") + 1));
+
+                break;
             default:
                 printLn("invalid command!");
                 break;
@@ -51,6 +55,21 @@ public class Duke {
 
 
         }
+    }
+
+    public static void deleteTask(String num) {
+        try {
+            int delTaskatIndex = Integer.parseInt(num);
+            tasks.remove(delTaskatIndex-1);
+            Task.taskCounter--;
+            taskCounter--;
+            printList();
+        }catch (IndexOutOfBoundsException e){
+            System.out.println(indent+"invalid index!");
+        }catch (NumberFormatException e){
+            System.out.println(indent+"invalid index!");
+        }
+
     }
     
     public static void addNewTask(Task task) {
@@ -66,9 +85,9 @@ public class Duke {
                 indent+"/ /_/ |  |  /    <\\  ___/\n" +
                 indent+"\\____ |____/|__|_ \\\\___  >\n" +
                 indent+"     \\/          \\/    \\/";
-        printLn("Hello from asdfff\n" + logo);
+        printLn("Hello from\n" + logo);
         printDivider();
-        printLn("Hello! I'm duke.\n" +
+        printLn("Hello! I'm Duke\n" +
                 indent+ "What can I do for you?");
         printDivider();
     }

@@ -4,7 +4,7 @@ package duke.task;
 public class Task {
     public String description;
     public boolean isDone;
-    protected static int taskCounter;
+    public static int taskCounter;
 
     public Task(String description) {
         this.description = description;

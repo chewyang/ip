@@ -4,29 +4,20 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
-
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
 
-    protected static Task[] tasks = new Task[100];
+    protected static ArrayList<Task> tasks = new ArrayList<>();
     protected static String indent = "          ";
     public static int taskCounter=0;
     public static File f = new File("data/tasks.txt");
     public static String fileDir = "data/tasks.txt";
 
     public static void main(String[] args) throws IOException {
-        if(f.exists()) {
-            processFile("data/tasks.txt");
-//            System.out.println("file exists");
-        }
-        else{
-            f.createNewFile();
-//            System.out.println("file created");
-        }
-
-
+        checkFileExist();
         Task task = null;
         printStartMsg();
         Scanner input = new Scanner(System.in);
@@ -44,7 +35,7 @@ public class Duke {
                 break;
             case ("done"):
                 checkValidIndex(command.substring(command.indexOf(" ") + 1));
-                changeDoneInFile();
+                updateFile();
                 break;
             case ("todo"):
                 task = Command.addTodo(command);
@@ -55,6 +46,10 @@ public class Duke {
             case ("event"):
                 task = Command.addEvent(command);
                 break;
+            case ("delete"):
+                deleteTask(command.substring(command.indexOf(" ") + 1));
+                updateFile();
+                break;
             default:
                 printLn("invalid command!");
                 break;
@@ -64,12 +59,14 @@ public class Duke {
                 appendToFile("data/tasks.txt",task.toStringFile());
                 task=null;
             }
+            //exits program
             if(firstCmd.equals("bye"))break;
 
 
 
         }
     }
+
 
     private static void appendToFile(String filePath, String textToAppend) throws IOException {
         FileWriter fw = new FileWriter(filePath, true); // create a FileWriter in append mode
@@ -115,59 +112,38 @@ public class Duke {
     }
 
     
-    public static void addNewTask(Task task) throws IOException {
-        tasks[taskCounter] = task;
+
+    public static void deleteTask(String num) {
+        try {
+            int delTaskatIndex = Integer.parseInt(num);
+            tasks.remove(delTaskatIndex-1);
+            Task.taskCounter--;
+            taskCounter--;
+            printList();
+        }catch (IndexOutOfBoundsException e){
+            System.out.println(indent+"invalid index!");
+        }catch (NumberFormatException e){
+            System.out.println(indent+"invalid index!");
+        }
+
+    }
+    
+    public static void addNewTask(Task task) {
+        tasks.add(task);
         taskCounter++;
     }
 
-
-    public static void printStartMsg() {
-        String logo =indent+"    .___     __\n" +
-                indent+"  __| _/_ __|  | __ ____\n" +
-                indent+" / __ |  |  \\  |/ // __ \\\n" +
-                indent+"/ /_/ |  |  /    <\\  ___/\n" +
-                indent+"\\____ |____/|__|_ \\\\___  >\n" +
-                indent+"     \\/          \\/    \\/";
-        printLn("Hello from\n" + logo);
-        printDivider();
-        printLn("Hello! I'm duke.Duke\n" +
-                indent+ "What can I do for you?");
-        printDivider();
-    }
-
-
-    public static void printByeMsg() {
-        printDivider();
-        printLn("Bye, see you again!");
-        printDivider();
-    }
-
-
-    public static void printList() {
-        printDivider();
-        if(taskCounter >0) {
-            printLn("Here are the tasks in your list:");
-
-            for (int i = 0; i < taskCounter; i++) {
-                printLn((i + 1) +"."+ tasks[i].toString());
-            }
-        }
-        else {
-            printLn("Nothing added!");
-        }
-        printDivider();
-    }
 
     public static void checkValidIndex(String word) {
         try{
             int listNum = Integer.parseInt(word);
 
             if(listNum<= taskCounter && listNum>0) {
-                tasks[listNum - 1].isDone = true;
+                tasks.get(listNum - 1).isDone = true;
                 printDivider();
                 printLn("Nice! I've marked this task as done:");
-                printLn("["+ tasks[listNum-1].getStatusIcon()+ "] "
-                        + tasks[listNum-1].description );
+                printLn("["+ tasks.get(listNum-1).getStatusIcon()+ "] "
+                        + tasks.get(listNum-1).description );
                 printDivider();
                 
 
@@ -181,16 +157,59 @@ public class Duke {
         }
     }
 
-    private static void changeDoneInFile() throws IOException {
+    private static void updateFile() throws IOException {
         writeToFile(fileDir, "");
         if(taskCounter >0) {
             for (int i = 0; i < taskCounter; i++) {
-                appendToFile(fileDir,tasks[i].toStringFile());
+                appendToFile(fileDir, tasks.get(i).toStringFile());
             }
         }
 
     }
 
+    public static void checkFileExist() throws IOException {
+        if(f.exists()) {
+            processFile("data/tasks.txt");
+        }
+        else{
+            f.createNewFile();
+        }
+    }
+
+    public static void printList() {
+        printDivider();
+        if(taskCounter >0) {
+            printLn("Here are the tasks in your list:");
+
+            for (int i = 0; i < taskCounter; i++) {
+                printLn((i + 1) +"."+ tasks.get(i).toString());
+            }
+        }
+        else {
+            printLn("Nothing added!");
+        }
+        printDivider();
+    }
+
+    public static void printStartMsg() {
+        String logo =indent+"    .___     __\n" +
+                indent+"  __| _/_ __|  | __ ____\n" +
+                indent+" / __ |  |  \\  |/ // __ \\\n" +
+                indent+"/ /_/ |  |  /    <\\  ___/\n" +
+                indent+"\\____ |____/|__|_ \\\\___  >\n" +
+                indent+"     \\/          \\/    \\/";
+        printLn("Hello from\n" + logo);
+        printDivider();
+        printLn("Hello! I'm Duke\n" +
+                indent+ "What can I do for you?");
+        printDivider();
+    }
+
+    public static void printByeMsg() {
+        printDivider();
+        printLn("Bye, see you again!");
+        printDivider();
+    }
 
     public static void printDivider() {
         System.out.println(indent+"____________________________________________________________");

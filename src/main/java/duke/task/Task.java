@@ -21,4 +21,8 @@ public class Task {
         return ("["+ this.getStatusIcon()+ "] "
                 + this.description );
     }
+
+    public String toStringFile(){
+        return null;
+    }
 }

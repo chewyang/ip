@@ -17,7 +17,16 @@ public class Duke {
     public static String fileDir = "data/tasks.txt";
 
     public static void main(String[] args) throws IOException {
-        fileProcessor("data/tasks.txt");
+        if(f.exists()) {
+            processFile("data/tasks.txt");
+//            System.out.println("file exists");
+        }
+        else{
+            f.createNewFile();
+//            System.out.println("file created");
+        }
+
+
         Task task = null;
         printStartMsg();
         Scanner input = new Scanner(System.in);
@@ -74,7 +83,7 @@ public class Duke {
         fw.close();
     }
 
-    private static void fileProcessor(String filePath) throws IOException, FileNotFoundException{
+    private static void processFile(String filePath) throws IOException, FileNotFoundException{
         File f = new File(filePath); // create a File for the given file path
         Scanner s = new Scanner(f); // create a Scanner using the File as the source
         boolean isDone;
@@ -104,6 +113,7 @@ public class Duke {
             }
         }
     }
+
     
     public static void addNewTask(Task task) throws IOException {
         tasks[taskCounter] = task;

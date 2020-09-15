@@ -13,11 +13,12 @@ public class Duke {
     protected static ArrayList<Task> tasks = new ArrayList<>();
     protected static String indent = "          ";
     public static int taskCounter=0;
-    public static File f = new File("data/tasks.txt");
+    public static String folderDir = "data";
     public static String fileDir = "data/tasks.txt";
 
+
     public static void main(String[] args) throws IOException {
-        checkFileExist();
+        createFileHierarchy(folderDir, fileDir);
         Task task = null;
         printStartMsg();
         Scanner input = new Scanner(System.in);
@@ -113,6 +114,13 @@ public class Duke {
 
     
 
+
+    
+    public static void addNewTask(Task task) {
+        tasks.add(task);
+        taskCounter++;
+    }
+
     public static void deleteTask(String num) {
         try {
             int delTaskatIndex = Integer.parseInt(num);
@@ -127,12 +135,6 @@ public class Duke {
         }
 
     }
-    
-    public static void addNewTask(Task task) {
-        tasks.add(task);
-        taskCounter++;
-    }
-
 
     public static void checkValidIndex(String word) {
         try{
@@ -167,14 +169,25 @@ public class Duke {
 
     }
 
-    public static void checkFileExist() throws IOException {
-        if(f.exists()) {
-            processFile("data/tasks.txt");
+    public static void createFileHierarchy(String folderPath, String filePath) throws IOException {
+        File folder = new File(folderPath);
+        File file = new File(filePath);
+        if(folder.exists()) {
+            if(file.exists()){
+                processFile(filePath);
+                return;
+            }
+            else{
+                file.createNewFile();
+            }
         }
-        else{
-            f.createNewFile();
+        else {
+            folder.mkdir();
+            file.createNewFile();
         }
+        
     }
+
 
     public static void printList() {
         printDivider();

@@ -35,7 +35,7 @@ public class Duke {
                 printList();
                 break;
             case ("done"):
-                checkValidIndex(command.substring(command.indexOf(" ") + 1));
+                checkValidIndex(command.substring(command.indexOf(" ") + 1),"done");
                 updateFile();
                 break;
             case ("todo"):
@@ -48,7 +48,7 @@ public class Duke {
                 task = Command.addEvent(command);
                 break;
             case ("delete"):
-                deleteTask(command.substring(command.indexOf(" ") + 1));
+                checkValidIndex(command.substring(command.indexOf(" ") + 1), "delete");
                 updateFile();
                 break;
             default:
@@ -67,7 +67,6 @@ public class Duke {
 
         }
     }
-
 
     private static void appendToFile(String filePath, String textToAppend) throws IOException {
         FileWriter fw = new FileWriter(filePath, true); // create a FileWriter in append mode
@@ -113,51 +112,11 @@ public class Duke {
     }
 
     
-
-
-    
     public static void addNewTask(Task task) {
         tasks.add(task);
         taskCounter++;
     }
 
-    public static void deleteTask(String num) {
-        try {
-            int delTaskatIndex = Integer.parseInt(num);
-            tasks.remove(delTaskatIndex-1);
-            Task.taskCounter--;
-            taskCounter--;
-            printList();
-        }catch (IndexOutOfBoundsException e){
-            System.out.println(indent+"invalid index!");
-        }catch (NumberFormatException e){
-            System.out.println(indent+"invalid index!");
-        }
-
-    }
-
-    public static void checkValidIndex(String word) {
-        try{
-            int listNum = Integer.parseInt(word);
-
-            if(listNum<= taskCounter && listNum>0) {
-                tasks.get(listNum - 1).isDone = true;
-                printDivider();
-                printLn("Nice! I've marked this task as done:");
-                printLn("["+ tasks.get(listNum-1).getStatusIcon()+ "] "
-                        + tasks.get(listNum-1).description );
-                printDivider();
-                
-
-            }
-            else {
-                printLn("invalid index!");
-            }
-
-        }catch (NumberFormatException e) {
-            System.out.println(indent+"invalid index!");
-        }
-    }
 
     private static void updateFile() throws IOException {
         writeToFile(fileDir, "");
@@ -168,6 +127,7 @@ public class Duke {
         }
 
     }
+
 
     public static void createFileHierarchy(String folderPath, String filePath) throws IOException {
         File folder = new File(folderPath);
@@ -204,18 +164,62 @@ public class Duke {
         printDivider();
     }
 
+
     public static void printStartMsg() {
-        String logo =indent+"    .___     __\n" +
-                indent+"  __| _/_ __|  | __ ____\n" +
-                indent+" / __ |  |  \\  |/ // __ \\\n" +
-                indent+"/ /_/ |  |  /    <\\  ___/\n" +
-                indent+"\\____ |____/|__|_ \\\\___  >\n" +
-                indent+"     \\/          \\/    \\/";
+        String logo = indent + "    .___     __\n" +
+                indent + "  __| _/_ __|  | __ ____\n" +
+                indent + " / __ |  |  \\  |/ // __ \\\n" +
+                indent + "/ /_/ |  |  /    <\\  ___/\n" +
+                indent + "\\____ |____/|__|_ \\\\___  >\n" +
+                indent + "     \\/          \\/    \\/";
         printLn("Hello from\n" + logo);
         printDivider();
         printLn("Hello! I'm Duke\n" +
-                indent+ "What can I do for you?");
+                indent + "What can I do for you?");
         printDivider();
+    }
+
+
+    public static void checkValidIndex(String word, String command) {
+                String message = null;
+                String description =null;
+        try{
+            int listNum = Integer.parseInt(word);
+                if (listNum <= taskCounter && listNum > 0) {
+
+                    switch (command) {
+                    case "done":
+                        tasks.get(listNum - 1).isDone = true;
+                        message = "Nice! I've marked this task as done: ";
+                        description =  tasks.get(listNum - 1).toString();
+                        break;
+
+                    case "delete":
+                        Task.taskCounter--;
+                        taskCounter--;
+                        description = tasks.get(listNum - 1).toString() + "\n" + indent +
+                                "Now you have " + taskCounter + " tasks in the list.";
+                        tasks.remove(listNum - 1);
+
+                        message = "Noted. I've removed this task: ";
+                        break;
+                    default:
+                        break;
+                    }
+                    printDivider();
+                    printLn(message);
+                    printLn(description);
+                    printDivider();
+                }
+
+            else {
+                printLn("invalid index!");
+            }
+
+        }catch (NumberFormatException | IndexOutOfBoundsException e) {
+            printLn("invalid index!");
+        }
+
     }
 
     public static void printByeMsg() {
@@ -231,8 +235,6 @@ public class Duke {
     public static void printLn(String string) {
         System.out.println(indent+ string);
     }
-
-
 }
 
 

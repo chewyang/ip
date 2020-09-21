@@ -26,6 +26,8 @@ public class Parser {
             return checkValidIndex(userInput, "done");
         case("delete"):
             return checkValidIndex(userInput, "delete");
+        case("find"):
+            return prepareFind(userInput);
         }
         return null;
     }
@@ -120,6 +122,13 @@ public class Parser {
         }
         return null;
 
+    }
+
+    public Command prepareFind(String userInput){
+        userInput = userInput.trim();
+        String key = userInput.substring(userInput.indexOf(" ")+1);
+        System.out.println(key);
+        return new findCommand(key);
     }
 
 }

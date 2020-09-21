@@ -35,11 +35,15 @@ public class TaskList {
         return taskCounter;
     }
 
-    public void printList(){
+    public void printList(boolean isMatching){
         System.out.println("          ____________________________________________________________");
         if(taskCounter >0) {
-            System.out.println("          Here are the tasks in your list:");
-
+            if(isMatching) {
+                System.out.println("          Here are the matching tasks in your list:");
+            }
+            else{
+                System.out.println("          Here are the tasks in your list:");
+            }
             for (int i = 0; i < taskCounter; i++) {
                 System.out.println("          "+(i + 1) +"."+ getTask(i).toString());
             }

@@ -25,4 +25,12 @@ public class Task {
     public String toStringFile(){
         return null;
     }
+
+    public void printMsg(String cmd){
+        String echo_msg ="          ____________________________________________________________\n" +
+                "          Got it. I've marked this task as "+cmd+":\n"+
+                "          "+toString()+"\n"+
+                "          ____________________________________________________________";
+        System.out.println(echo_msg);
+    }
 }

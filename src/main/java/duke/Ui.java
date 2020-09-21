@@ -1,24 +1,46 @@
 package duke;
 
-public class Ui {
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.util.Scanner;
+
+class Ui {
+
+
+    private final Scanner in;
+    private final PrintStream out;
+
 
     public static final String INDENT = "          ";
 
+    public Ui(InputStream in, PrintStream out) {
+        this.in = new Scanner(in);
+        this.out = out;
+    }
 
+    public Ui(){
+        this(System.in, System.out);
+    }
 
+    public String getUserCommand() {
+        out.println(INDENT + "Enter command: ");
+        String fullInputLine = in.nextLine();
 
+        // silently consume all ignored lines
+//        while (!in.nextLine().equals("bye")) {
+//            fullInputLine = in.nextLine();
+//        }
 
+        return fullInputLine;
+    }
 
-
-
-
-    public static void printByeMsg() {
+    public void printByeMsg() {
         printDivider();
         printLn("Bye, see you again!");
         printDivider();
     }
 
-    public static void printStartMsg() {
+    public void printStartMsg() {
         String logo = INDENT + "    .___     __\n" +
                 INDENT + "  __| _/_ __|  | __ ____\n" +
                 INDENT + " / __ |  |  \\  |/ // __ \\\n" +
@@ -32,12 +54,13 @@ public class Ui {
         printDivider();
     }
 
-    public static void printDivider() {
-        System.out.println(INDENT+"____________________________________________________________");
+    public void printDivider() {
+        out.println(INDENT+"____________________________________________________________");
     }
 
-    public static void printLn(String string) {
-        System.out.println(INDENT + string);
+    public void printLn(String string) {
+        out.println(INDENT + string);
     }
+
 
 }

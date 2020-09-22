@@ -5,10 +5,11 @@ public class Event extends Task {
 
 
     public Event(String description, String time, boolean isFromFile) {
-        super(description);
+        super(description, isFromFile);
         this.time =time;
+        //only print acknowledgement message if task added is from the file
         if(!isFromFile) {
-            printEventMsg(description);
+            printAckMsg();
         }
     }
 
@@ -17,6 +18,8 @@ public class Event extends Task {
         return ("[E]"+"["+ this.getStatusIcon()+ "] "
                 + this.description+" (at: "+this.time +")" );
     }
+
+    //format of task to be written in the file
     @Override
     public String toStringFile(){
         int isDoneInt = isDone? 1:0;
@@ -24,12 +27,4 @@ public class Event extends Task {
                 + this.description +" | "+this.time);
     }
 
-    public void printEventMsg(String description) {
-        String echo_msg ="          ____________________________________________________________\n" +
-                "          Got it. I've added this task:\n"+
-                "          "+ toString()+"\n"+
-                "          Now you have "+ taskCounter +" in the list.\n"+
-                "          ____________________________________________________________";
-        System.out.println(echo_msg);
-    }
 }

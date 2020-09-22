@@ -10,7 +10,7 @@ public class TaskList {
     private int taskCounter;
 
 
-    /** Constructs an empty task list **/
+    //constructs an empty task list
     public TaskList(){
         tasks = new ArrayList<>();
         taskCounter =0;
@@ -27,10 +27,12 @@ public class TaskList {
         taskCounter--;
     }
 
+    //obtains the task of the given indexed item in the list
     public Task getTask(int i) {
         return tasks.get(i);
     }
 
+    //obtains the current number of tasks in the list
     public int getTaskCounter(){
         return taskCounter;
     }

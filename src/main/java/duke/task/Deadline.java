@@ -1,16 +1,15 @@
 package duke.task;
 
-import duke.Duke;
-
 public class Deadline extends Task {
     protected String deadline;
 
 
     public Deadline(String description, String deadline, boolean isFromFile) {
-        super(description);
+        super(description, isFromFile);
         this.deadline=deadline;
+        //only print acknowledgement message if task added is from the file
         if(!isFromFile) {
-            printDeadlineMsg(description);
+            printAckMsg();
         }
     }
 
@@ -19,23 +18,13 @@ public class Deadline extends Task {
         return ("[D]"+"["+ this.getStatusIcon()+ "] "
                 + this.description+" (by: "+this.deadline+")" );
     }
+
+    //format of task to be written in the file
     @Override
     public String toStringFile(){
         int isDoneInt = isDone? 1:0;
         return ("D | "+ isDoneInt + " | "
                 + this.description +" | "+this.deadline);
     }
-
-    public void printDeadlineMsg(String deadline) {
-        String echo_msg ="          ____________________________________________________________\n" +
-                "          Got it. I've added this task:\n"+
-                "          "+toString()+"\n"+
-                "          Now you have "+ taskCounter +" in the list.\n"+
-                "          ____________________________________________________________";
-        System.out.println(echo_msg);
-    }
-
-
-
 
 }

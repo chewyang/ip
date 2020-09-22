@@ -10,6 +10,7 @@ public class Parser {
         this.ui = ui;
     }
 
+    //takes in the user's commands and performs its functions
     public Command parse(String userInput){
         String firstCmd = getFirstCommand(userInput);
 
@@ -30,10 +31,10 @@ public class Parser {
         return null;
     }
 
+    //
     private Command prepareAddTodoArgs(String userInput) {
         try{
-            userInput.substring(0,userInput.indexOf(" "));
-            String description = userInput.substring(userInput.indexOf(" ") + 1);
+            String description = getDscOfCommand(userInput);
             return new AddTodoCommand(description);
         }catch (StringIndexOutOfBoundsException e){
             ui.printLn("Todo field cannot be empty!");
@@ -95,14 +96,19 @@ public class Parser {
         return null;
     }
 
-    public String getFirstCommand(String userInput){
+    private String getFirstCommand(String userInput){
         userInput = userInput.trim();
         return userInput.split(" ")[0];
     }
 
+    private String getDscOfCommand(String userInput){
+        userInput = userInput.trim();
+        return userInput.substring(userInput.indexOf(" ") + 1);
+    }
 
+    //checks if the index given to the done or delete function is valid
     public Command checkValidIndex(String word, String cmdType){
-        word= word.substring(word.indexOf(" ") + 1);
+        word= getDscOfCommand(word);
 
         try{
             int listNum = Integer.parseInt(word);

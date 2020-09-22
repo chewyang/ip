@@ -32,6 +32,8 @@ public class Parser {
             return checkValidIndex(userInput, "done");
         case("delete"):
             return checkValidIndex(userInput, "delete");
+        case("find"):
+            return prepareFind(userInput);
         }
         return null;
     }
@@ -145,6 +147,15 @@ public class Parser {
 
     }
 
+
+    public Command prepareFind(String userInput){
+        userInput = userInput.trim();
+        String key = userInput.substring(userInput.indexOf(" ")+1);
+        System.out.println(key);
+        return new findCommand(key);
+    }
+
+
     private String checkDateTime(String dateTime){
         try{
             LocalDateTime dateTime1 = LocalDateTime.parse(dateTime);
@@ -156,6 +167,7 @@ public class Parser {
         }
 
     }
+
 }
 
 

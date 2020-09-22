@@ -36,6 +36,7 @@ public class Duke {
 
         }while(!command.equals("bye"));
         storage.updateFile(tasks);
+        ui.printByeMsg();
     }
 
 

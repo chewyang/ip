@@ -9,6 +9,7 @@ public class doneCommand extends Command{
 
     }
 
+    //sets the task as done
     @Override
     public void execute() {
         try {

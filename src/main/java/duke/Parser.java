@@ -2,6 +2,11 @@ package duke;
 
 import duke.command.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Parser {
 
     private Ui ui;
@@ -62,7 +67,13 @@ public class Parser {
         try {
             //obtains the deadline
             String deadline = userInput.substring(userInput.indexOf("/by") + 4);
-            return new AddDeadlineCommand(description, deadline);
+            try {
+                String dateTime = checkDateTime(deadline);
+                return new AddEventCommand(description, dateTime);
+
+            }catch(DateTimeParseException e){
+                return new AddEventCommand(description, deadline);
+            }
 
         }catch (StringIndexOutOfBoundsException e){
             ui.printLn("Missing deadline!");
@@ -89,7 +100,13 @@ public class Parser {
         try{
             //obtains the time string
             String time = userInput.substring(userInput.indexOf("/at") + 4);
-            return new AddEventCommand(description, time);
+            try {
+                String dateTime = checkDateTime(time);
+                return new AddEventCommand(description, dateTime);
+
+            }catch(DateTimeParseException e){
+                return new AddEventCommand(description, time);
+            }
         }catch (StringIndexOutOfBoundsException e){
             ui.printLn("Missing time!");
 
@@ -124,11 +141,25 @@ public class Parser {
 
     }
 
+
     public Command prepareFind(String userInput){
         userInput = userInput.trim();
         String key = userInput.substring(userInput.indexOf(" ")+1);
         System.out.println(key);
         return new findCommand(key);
+    }
+
+
+    private String checkDateTime(String dateTime){
+        try{
+            LocalDateTime dateTime1 = LocalDateTime.parse(dateTime);
+            String dateTime2 = dateTime1.format(DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"));
+            return dateTime2;
+
+        }catch(DateTimeParseException e){
+                return dateTime;
+        }
+
     }
 
 }

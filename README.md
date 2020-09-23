@@ -23,7 +23,7 @@ Duke is a project for students to store their tasks and manage them via a **Comm
 ## Quick start
 1. Ensure you have Java 11 or above installed in your Computer.
 
-2. Download the latest duke.jar from [here](#jarLink).
+2. Download the latest duke.jar from [here](https://github.com/chewyang/ip/releases).
 
 3. Copy the file to the folder you want to use as the home folder for Duke
 
@@ -41,7 +41,7 @@ Duke is a project for students to store their tasks and manage them via a **Comm
 
 <a name="features"></a> 
 
-##Features
+## Features
 notes about the command format:
 * Words in UPPER_CASE are the parameters to be supplied by the user.
   e.g todo TASK, TASK is a parameter which can be used as todo HOMEWORK
@@ -49,7 +49,7 @@ notes about the command format:
 * Parameters have to be in a fixed order.
 <a name="todo"></a> 
 
-###Adding a **todo** task: **todo**
+### Adding a **todo** task: **todo**
 Adds a **todo** task to the task list.
 
     Format: todo TASK
@@ -59,7 +59,7 @@ Example:
 * **todo** project ip 
 <a name="deadline"></a> 
 
-###Adding a **deadline** task: **deadline**             
+### Adding a **deadline** task: **deadline**             
 Adds a **deadline** task to the task list.
                     
     Format: deadline TASK /by DEADLINE
@@ -72,7 +72,7 @@ Example:
    <a name="abcd"></a>
 
 <a name="event"></a> 
-###Adding a **event** task: **event**                                                                                                 
+### Adding a **event** task: **event**                                                                                                 
 Adds a **event** task to the task list.                                                                                     
                                                                                                                               
     Format: event TASK /at TIME                                                                                        
@@ -83,19 +83,19 @@ Example:
 * **event** cs2113 tutorial 3 /at wednesday night                                                                          
 * **event** project ip /at 2020-10-23T19:00                                                                                
 <a name="find"></a>                                                                                                                               
-###Finding a task: **find**
+### Finding a task: **find**
 Finds a task using a keyword and shows a list of tasks containing that keyword
 
     Format: **find** KEYWORD
 
 <a name="list"></a> 
-###Listing all current tasks: **list**
+### Listing all current tasks: **list**
 Shows a descriptive list of all tasks and its status
 
     Format: **list**
 
  <a name="delete"></a>    
-###Deleting a task: **delete**
+### Deleting a task: **delete**
 Deletes an existing task in the task list
 
     Format: delete INDEX
@@ -104,22 +104,22 @@ Example:
 * **list** followed by **delete** 2 deletes the 2nd task in the list
 * **delete 2**
 <a name="bye"></a> 
-###Exiting the program: **bye**
+### Exiting the program: **bye**
 Exits the program
 
     Format: bye
 
 <a name="save"></a> 
-###Saving the data
+### Saving the data
 The tasks are saved in the hard disk automatically after the user enters **bye** and exits the program
 There is no need to save manually
 <a name="faq"></a> 
-###FAQ
+### FAQ
 **Q**: How do I transfer my data to another Computer?
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 <a name="commandSummary"></a> 
-###Command Summary
+### Command Summary
 Action | Format, Examples
 ------------ | -------------
 **todo** | todo TASK <br/> e.g **todo** cs2113 tutorial 3

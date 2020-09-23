@@ -1,8 +1,3 @@
-      ____        _        
-     |  _ \ _   _| | _____ 
-     | | | | | | | |/ / _ \  
-     | |_| | |_| |   <  __/
-     |____/ \__,_|_|\_\___|
 # ip User Guide
 Duke is a project for students to store their tasks and manage them via a **Command Line Interface**
 (CLI) if you can type fast you can manage your tasks faster than traditional apps.

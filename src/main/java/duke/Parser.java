@@ -39,7 +39,7 @@ public class Parser {
     }
 
     //
-    public Command prepareAddTodoArgs(String userInput, boolean isFromFile) {
+    private Command prepareAddTodoArgs(String userInput, boolean isFromFile) {
         try{
             String description = getDscOfCommand(userInput);
             return new AddTodoCommand(description, isFromFile);
@@ -49,7 +49,7 @@ public class Parser {
         return null;
     }
 
-    public Command prepareDeadlineArgs(String userInput, boolean isFromFile) {
+    private Command prepareDeadlineArgs(String userInput, boolean isFromFile) {
         String description = null;
         try {
             userInput.substring(0, userInput.indexOf(" "));
@@ -83,7 +83,7 @@ public class Parser {
         return null;
     }
 
-    public Command prepareEventArgs(String userInput, boolean isFromFile) {
+    private Command prepareEventArgs(String userInput, boolean isFromFile) {
         String description=null;
         try {
             userInput.substring(0, userInput.indexOf(" "));

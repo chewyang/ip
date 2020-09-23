@@ -84,9 +84,6 @@ public class Storage {
         boolean isDone;
         while (s.hasNext()) {
             Task task = null;
-            Command command = null;
-            Parser parser = null;
-            //System.out.println(s.nextLine());
             String line = s.nextLine();
             String words[] = line.split(" \\| ");
             String firstCommand= words[0];
@@ -95,24 +92,18 @@ public class Storage {
             switch(firstCommand){
             case "T":
                 task = new Todo(words[2]);
-//                command = parser.prepareAddTodoArgs(words[2], true);
                 break;
             case "D":
                 task = new Deadline(words[2],words[3]);
-//                command = parser.prepareDeadlineArgs(words[2], true);
-
                 break;
             case "E":
                 task = new Event(words[2],words[3]);
-//                command = parser.prepareEventArgs(words[2], true);
                 break;
-
             }
-//            command.execute();
             if(task!=null) {
                 task.isDone=isDone;
+                //set isFromFile to true so as not to print the acknowledgement message once task is added
                 tasks.addNewTask(task, true);
-
             }
         }
         return tasks;

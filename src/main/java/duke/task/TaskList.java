@@ -20,6 +20,7 @@ public class TaskList {
     public void addNewTask(Task task, boolean isFromFile) {
         tasks.add(task);
         taskCounter++;
+        //Only print the acknowledgement message if the updates are from the file
         if(!isFromFile) {
             printAckMsg();
         }

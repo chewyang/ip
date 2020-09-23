@@ -2,12 +2,12 @@ package duke.task;
 
 public class Todo extends Task {
 
-    public Todo(String description, boolean isFromFile) {
-        super(description, isFromFile);
+    public Todo(String description) {
+        super(description);
         //only print acknowledgement message if task added is from the file
-        if(!isFromFile) {
-            printAckMsg();
-        }
+//        if(!isFromFile) {
+//            printAckMsg();
+//        }
     }
 
     @Override

@@ -26,8 +26,6 @@ public class Duke {
 
     public void run() throws IOException {
         ui.printStartMsg();
-        System.out.println(tasks.getTaskCounter());
-
         String command;
         do{
             command = ui.getUserCommand();

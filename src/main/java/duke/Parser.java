@@ -21,11 +21,11 @@ public class Parser {
 
         switch(firstCmd){
         case("todo"):
-            return prepareAddTodoArgs(userInput);
+            return prepareAddTodoArgs(userInput, false);
         case("deadline"):
-            return prepareDeadlineArgs(userInput);
+            return prepareDeadlineArgs(userInput, false);
         case("event"):
-            return prepareEventArgs(userInput);
+            return prepareEventArgs(userInput, false);
         case("list"):
             return new ListCommand();
         case("done"):
@@ -39,17 +39,17 @@ public class Parser {
     }
 
     //
-    private Command prepareAddTodoArgs(String userInput) {
+    public Command prepareAddTodoArgs(String userInput, boolean isFromFile) {
         try{
             String description = getDscOfCommand(userInput);
-            return new AddTodoCommand(description);
+            return new AddTodoCommand(description, isFromFile);
         }catch (StringIndexOutOfBoundsException e){
             ui.printLn("Todo field cannot be empty!");
         }
         return null;
     }
 
-    private Command prepareDeadlineArgs(String userInput) {
+    public Command prepareDeadlineArgs(String userInput, boolean isFromFile) {
         String description = null;
         try {
             userInput.substring(0, userInput.indexOf(" "));
@@ -70,10 +70,10 @@ public class Parser {
             String deadline = userInput.substring(userInput.indexOf("/by") + 4);
             try {
                 String dateTime = checkDateTime(deadline);
-                return new AddEventCommand(description, dateTime);
+                return new AddDeadlineCommand(description, dateTime, isFromFile);
 
             }catch(DateTimeParseException e){
-                return new AddEventCommand(description, deadline);
+                return new AddDeadlineCommand(description, deadline, isFromFile);
             }
 
         }catch (StringIndexOutOfBoundsException e){
@@ -83,7 +83,7 @@ public class Parser {
         return null;
     }
 
-    private Command prepareEventArgs(String userInput) {
+    public Command prepareEventArgs(String userInput, boolean isFromFile) {
         String description=null;
         try {
             userInput.substring(0, userInput.indexOf(" "));
@@ -103,10 +103,10 @@ public class Parser {
             String time = userInput.substring(userInput.indexOf("/at") + 4);
             try {
                 String dateTime = checkDateTime(time);
-                return new AddEventCommand(description, dateTime);
+                return new AddEventCommand(description, dateTime, isFromFile);
 
             }catch(DateTimeParseException e){
-                return new AddEventCommand(description, time);
+                return new AddEventCommand(description, time, isFromFile);
             }
         }catch (StringIndexOutOfBoundsException e){
             ui.printLn("Missing time!");
@@ -147,15 +147,13 @@ public class Parser {
 
     }
 
-
+    //returns the keyword to be used in the find command
     public Command prepareFind(String userInput){
-        userInput = userInput.trim();
-        String key = userInput.substring(userInput.indexOf(" ")+1);
-        System.out.println(key);
+        String key = getDscOfCommand(userInput);
         return new findCommand(key);
     }
 
-
+    //checks if the string given by the user is in a valid dateTime format
     private String checkDateTime(String dateTime){
         try{
             LocalDateTime dateTime1 = LocalDateTime.parse(dateTime);

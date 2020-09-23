@@ -14,7 +14,7 @@ public class findCommand extends Command {
         TaskList taskList = new TaskList();
         for(int i=0; i < tasks.getTaskCounter(); i++){
             if(tasks.getTask(i).toString().contains(key)){
-                taskList.addNewTask(tasks.getTask(i));
+                taskList.addNewTask(tasks.getTask(i), false);
             }
         }
         taskList.printList(true);

@@ -17,9 +17,12 @@ public class TaskList {
     }
 
 
-    public void addNewTask(Task task) {
+    public void addNewTask(Task task, boolean isFromFile) {
         tasks.add(task);
         taskCounter++;
+        if(!isFromFile) {
+            printAckMsg();
+        }
     }
 
     public void deleteTask(int index){
@@ -55,5 +58,14 @@ public class TaskList {
         }
         System.out.println("          ____________________________________________________________");
 
+    }
+
+    public void printAckMsg() {
+        String ackMsg ="          ____________________________________________________________\n" +
+                "          Got it. I've added this task:\n"+
+                "          "+getTask(taskCounter-1).toString()+"\n"+
+                "          Now you have "+ taskCounter +" in the list.\n"+
+                "          ____________________________________________________________";
+        System.out.println(ackMsg);
     }
 }

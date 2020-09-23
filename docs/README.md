@@ -117,6 +117,7 @@ There is no need to save manually
 ### Command Summary
 Action | Format, Examples
 ------------ | -------------
+
 **todo** | todo TASK <br/> e.g **todo** cs2113 tutorial 3
 **deadline** | deadline TASK /by DEADLINE <br/> e.g **deadline** homework /by tonight <br/> OR **deadline** project ip /by 2020-10-23T19:00  
 **event** | event TASK /at TIME <br/> e.g **event** CS2101 meeting /at 9pm <br/> OR **event** project ip /at 2020-10-23T19:00

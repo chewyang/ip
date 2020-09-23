@@ -116,6 +116,7 @@ There is no need to save manually
 <a name="commandSummary"></a> 
 ### Command Summary
 Action | Format, Examples
+
 ------------ | -------------
 
 **todo** | todo TASK <br/> e.g **todo** cs2113 tutorial 3

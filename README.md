@@ -52,7 +52,7 @@ notes about the command format:
 ### Adding a **todo** task: **todo**
 Adds a **todo** task to the task list.
 
-    Format: todo TASK
+>Format: **todo** TASK
 
 Example: 
 * **todo** cs2113 tutorial 3
@@ -62,9 +62,9 @@ Example:
 ### Adding a **deadline** task: **deadline**             
 Adds a **deadline** task to the task list.
                     
-    Format: deadline TASK /by DEADLINE
-    note that dates and times can also be used as a parameter for DEADLINE as YYYY-MM-DDTHH:mm format (e.g., 2020-09-09T19:00)
-    which will output as MM-DD-YYY HH:mm (e.g., 09-09-2020 19:00)              
+>Format: **deadline** TASK /by DEADLINE
+>>note that dates and times can also be used as a parameter for DEADLINE as YYYY-MM-DDTHH:mm format (e.g., 2020-09-09T19:00)
+>>which will output as MM-DD-YYY HH:mm (e.g., 09-09-2020 19:00)              
                                          
 Example:                                 
 * **deadline** cs2113 tutorial 3 /by wednesday night            
@@ -75,9 +75,9 @@ Example:
 ### Adding a **event** task: **event**                                                                                                 
 Adds a **event** task to the task list.                                                                                     
                                                                                                                               
-    Format: event TASK /at TIME                                                                                        
-    note that dates and times can also be used as a parameter for TIME as YYYY-MM-DDTHH:mm format (e.g., 2020-09-09T19:00)
-    which will output as MM-DD-YYY HH:mm (e.g., 09-09-2020 19:00)                                                             
+>Format: **event** TASK /at TIME                                                                                        
+>>note that dates and times can also be used as a parameter for TIME as YYYY-MM-DDTHH:mm format (e.g., 2020-09-09T19:00)
+>>which will output as MM-DD-YYY HH:mm (e.g., 09-09-2020 19:00)                                                             
                                                                                                                               
 Example:                                                                                                                      
 * **event** cs2113 tutorial 3 /at wednesday night                                                                          
@@ -86,19 +86,19 @@ Example:
 ### Finding a task: **find**
 Finds a task using a keyword and shows a list of tasks containing that keyword
 
-    Format: **find** KEYWORD
+>Format: **find** KEYWORD
 
 <a name="list"></a> 
 ### Listing all current tasks: **list**
 Shows a descriptive list of all tasks and its status
 
-    Format: **list**
+>Format: **list**
 
  <a name="delete"></a>    
 ### Deleting a task: **delete**
 Deletes an existing task in the task list
 
-    Format: delete INDEX
+>Format: **delete** INDEX
 
 Example:
 * **list** followed by **delete** 2 deletes the 2nd task in the list
@@ -107,7 +107,7 @@ Example:
 ### Exiting the program: **bye**
 Exits the program
 
-    Format: bye
+>Format: **bye**
 
 <a name="save"></a> 
 ### Saving the data
@@ -115,10 +115,10 @@ The tasks are saved in the hard disk automatically after the user enters **bye**
 There is no need to save manually
 <a name="faq"></a> 
 ### FAQ
-**Q**: How do I transfer my data to another Computer?
+**Q**: How do I transfer my data to another Computer? <br/>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
-<a name="commandSummary"></a> 
+<a name="commandSummmary"></a> 
 ### Command Summary
 Action | Format, Examples
 ------------ | -------------

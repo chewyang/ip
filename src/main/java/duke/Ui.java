@@ -4,12 +4,14 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-class Ui {
+/**
+ * Text UI of the application
+ */
 
+class Ui {
 
     private final Scanner in;
     private final PrintStream out;
-
 
     public static final String INDENT = "          ";
 
@@ -22,16 +24,18 @@ class Ui {
         this(System.in, System.out);
     }
 
+    /**
+     * Takes in the user input.
+     * @return the raw string of the user input.
+     */
     public String getUserCommand() {
         out.println(INDENT + "Enter command: ");
         String fullInputLine = in.nextLine();
-
-        // silently consume all ignored lines
-//        while (!in.nextLine().equals("bye")) {
-//            fullInputLine = in.nextLine();
-//        }
-
         return fullInputLine;
+    }
+
+    public void printErrorMessage() {
+        printLn(INDENT+"Invalid command!");
     }
 
     public void printByeMsg() {

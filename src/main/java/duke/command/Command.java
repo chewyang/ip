@@ -2,16 +2,25 @@ package duke.command;
 
 import duke.task.TaskList;
 
+/**
+ * Represents an executable command.
+ */
+
 public class Command {
 
     protected TaskList tasks;
 
-    //to execute the commands, to be overwritten
+    /**
+     * An execute method to be overridden by child classes.
+     */
     public void execute(){
         return;
     }
 
-    //sets the tasks list for the functions to work on
+    /**
+     * Sets the current task list in the program from the file.
+     * @param tasks used to set the current task list
+     */
     public void setData(TaskList tasks){
         this.tasks = tasks;
     }

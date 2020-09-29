@@ -4,13 +4,19 @@ import duke.task.Task;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the current list of tasks.
+ */
+
 public class TaskList {
 
     private ArrayList<Task> tasks;
     private int taskCounter;
 
 
-    //constructs an empty task list
+    /**
+     * Constructs an empty task list.
+     */
     public TaskList(){
         tasks = new ArrayList<>();
         taskCounter =0;
@@ -37,6 +43,10 @@ public class TaskList {
         return taskCounter;
     }
 
+    /**
+     * Prints the full list of tasks or the list of matching tasks from the {@code find} command
+     * @param isMatching checks if this method needs to list the full or matching task list
+     */
     public void printList(boolean isMatching){
         System.out.println("          ____________________________________________________________");
         if(taskCounter >0) {

@@ -2,6 +2,9 @@ package duke.command;
 
 import duke.task.TaskList;
 
+/**
+ * Finds and lists all tasks in the task list whose task contains any of the keywords
+ */
 public class findCommand extends Command {
     private final String key;
 

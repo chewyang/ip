@@ -7,6 +7,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ *  Parses the user input
+ */
+
 public class Parser {
 
     private Ui ui;
@@ -15,7 +19,11 @@ public class Parser {
         this.ui = ui;
     }
 
-    //takes in the user's commands and performs its functions
+    /**
+     *  parses user input into command for execution
+     * @param userInput full user input string
+     * @return the command based on the user input
+     */
     public Command parse(String userInput){
         String firstCmd = getFirstCommand(userInput);
 
@@ -38,7 +46,12 @@ public class Parser {
         return null;
     }
 
-    //
+    /**
+     * Parses arguments in the context of the add Todo task.
+     * Checks if the user has input the todo field.
+     * @param userInput full user input
+     * @return the prepared command
+     */
     private Command prepareAddTodoArgs(String userInput) {
         try{
             String description = getDscOfCommand(userInput);
@@ -49,6 +62,12 @@ public class Parser {
         return null;
     }
 
+    /**
+     * Parses arguments in the context of the add Deadline task.
+     * Checks if the user has input the deadline field , '/by' keyword and deadline
+     * * @param userInput full user input
+     * @return the prepared command
+     */
     private Command prepareDeadlineArgs(String userInput) {
         String description = null;
         try {
@@ -83,6 +102,12 @@ public class Parser {
         return null;
     }
 
+    /**
+     * Parses arguments in the context of the add Event task
+     * Checks if the user has input the event field , '/at' keyword and time
+     * @param userInput full user input
+     * @return the prepared command
+     */
     private Command prepareEventArgs(String userInput) {
         String description=null;
         try {
@@ -115,17 +140,34 @@ public class Parser {
         return null;
     }
 
+    /**
+     * Obtains the first word of the user input command.
+     * @param userInput raw user input
+     * @return the first word of the user input
+     */
     private String getFirstCommand(String userInput){
         userInput = userInput.trim();
         return userInput.split(" ")[0];
     }
 
+    /**
+     * Obtains the description of the user command from the raw user input.
+     * @param userInput raw user input
+     * @return description of the user command
+     */
     private String getDscOfCommand(String userInput){
         userInput = userInput.trim();
         return userInput.substring(userInput.indexOf(" ") + 1);
     }
 
-    //checks if the index given to the done or delete function is valid
+    /**
+     * Checks the validity of the index given by the user to delete or set the task as done
+     * @param word string to parse as index number
+     * @param cmdType to check which command is using this method
+     * @return the command to delete or set as done if index parsed is valid
+     * @throws NumberFormatException the word string region is not a valid number
+     */
+
     public Command checkValidIndex(String word, String cmdType){
         word= getDscOfCommand(word);
 
@@ -148,6 +190,11 @@ public class Parser {
     }
 
 
+    /**
+     * Parses arguments in the context of the find command
+     * @param userInput raw user input
+     * @return the prepared command
+     */
     public Command prepareFind(String userInput){
         userInput = userInput.trim();
         String key = userInput.substring(userInput.indexOf(" ")+1);
@@ -156,6 +203,11 @@ public class Parser {
     }
 
 
+    /**
+     * Checks validity of the user inputted string as a datetime object
+     * @param dateTime string to be parsed
+     * @return the converted string if the datetime string parsed is valid
+     */
     private String checkDateTime(String dateTime){
         try{
             LocalDateTime dateTime1 = LocalDateTime.parse(dateTime);

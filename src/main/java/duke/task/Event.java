@@ -1,8 +1,11 @@
 package duke.task;
 
+/**
+ * Represents an event task in the tasklist
+ */
+
 public class Event extends Task {
     protected String time;
-
 
     public Event(String description, String time, boolean isFromFile) {
         super(description, isFromFile);

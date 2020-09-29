@@ -4,6 +4,10 @@ import duke.command.Command;
 import duke.task.TaskList;
 import java.io.IOException;
 
+/**
+ * Entry point of the Duke application.
+ * Initializes the application and starts the interaction with the user.
+ */
 
 public class Duke {
 
@@ -12,6 +16,7 @@ public class Duke {
     private Storage storage;
     private Ui ui;
 
+    /**Sets up required objects and loads up the data from the storage file */
     public Duke(String filePath, String folderPath) {
         ui = new Ui();
         storage = new Storage(folderPath, filePath);
@@ -24,6 +29,7 @@ public class Duke {
         }
     }
 
+    /** Runs the program until termination.  */
     public void run() throws IOException {
         ui.printStartMsg();
         System.out.println(tasks.getTaskCounter());
@@ -45,12 +51,16 @@ public class Duke {
 
     }
 
-    public void executeCommand(Command cmd) {
+    /**
+     * Executes the command
+     * @param command user command
+     */
+    public void executeCommand(Command command) {
         try {
-            cmd.setData(tasks);
-            cmd.execute();
+            command.setData(tasks);
+            command.execute();
         }catch(NullPointerException e){
-
+            ui.printErrorMessage();
         }
     }
 

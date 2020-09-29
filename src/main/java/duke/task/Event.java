@@ -7,13 +7,12 @@ package duke.task;
 public class Event extends Task {
     protected String time;
 
-    public Event(String description, String time, boolean isFromFile) {
-        super(description, isFromFile);
+
+
+    public Event(String description, String time) {
+        super(description);
         this.time =time;
-        //only print acknowledgement message if task added is from the file
-        if(!isFromFile) {
-            printAckMsg();
-        }
+
     }
 
     @Override

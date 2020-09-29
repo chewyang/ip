@@ -9,19 +9,23 @@ import duke.task.Task;
 
 public class AddEventCommand extends Command{
     private final Task eventToAdd;
+    private final boolean isFromFile;
 
     /**
      * Creates a new event task
      * @param des description of the event task
      * @param time time of the task to be done at
      */
-    public AddEventCommand(String des, String time) {
-        this.eventToAdd = new Event(des, time,false);
+
+    public AddEventCommand(String des, String time, boolean isFromFile) {
+        this.eventToAdd = new Event(des, time);
+        this.isFromFile = isFromFile;
+
     }
 
 
     @Override
     public void execute() {
-        tasks.addNewTask(eventToAdd);
+        tasks.addNewTask(eventToAdd, isFromFile);
     }
 }

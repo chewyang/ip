@@ -9,12 +9,14 @@ public class Task {
     public boolean isDone;
     public static int taskCounter;
 
+
     /**
      * Basic make up of a task
      * @param description description of the task
-     * @param isFromFile checks if the task loaded is from a file or not
      */
-    public Task(String description, boolean isFromFile) {
+
+    public Task(String description) {
+
         this.description = description;
         this.isDone = false;
         taskCounter++;
@@ -44,12 +46,12 @@ public class Task {
         System.out.println(msg);
     }
 
-    public void printAckMsg() {
-        String ackMsg ="          ____________________________________________________________\n" +
-                "          Got it. I've added this task:\n"+
-                "          "+toString()+"\n"+
-                "          Now you have "+ taskCounter +" in the list.\n"+
-                "          ____________________________________________________________";
-        System.out.println(ackMsg);
-    }
+//    public void printAckMsg() {
+//        String ackMsg ="          ____________________________________________________________\n" +
+//                "          Got it. I've added this task:\n"+
+//                "          "+toString()+"\n"+
+//                "          Now you have "+  +" in the list.\n"+
+//                "          ____________________________________________________________";
+//        System.out.println(ackMsg);
+//    }
 }

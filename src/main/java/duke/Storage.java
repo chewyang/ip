@@ -1,5 +1,7 @@
 package duke;
 
+import duke.command.AddTodoCommand;
+import duke.command.Command;
 import duke.task.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -121,13 +123,13 @@ public class Storage {
 
             switch(firstCommand){
             case "T":
-                task = new Todo(words[2],true);
+                task = new Todo(words[2]);
                 break;
             case "D":
-                task = new Deadline(words[2],words[3], true);
+                task = new Deadline(words[2],words[3]);
                 break;
             case "E":
-                task = new Event(words[2],words[3], true);
+                task = new Event(words[2],words[3]);
                 break;
             default:
                 break;
@@ -135,7 +137,8 @@ public class Storage {
             }
             if(task!=null) {
                 task.isDone=isDone;
-                tasks.addNewTask(task);
+                //set isFromFile to true so as not to print the acknowledgement message once task is added
+                tasks.addNewTask(task, true);
             }
         }
         return tasks;

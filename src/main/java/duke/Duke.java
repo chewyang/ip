@@ -2,6 +2,8 @@ package duke;
 
 import duke.command.Command;
 import duke.task.TaskList;
+
+import java.io.File;
 import java.io.IOException;
 
 
@@ -14,7 +16,7 @@ public class Duke {
 
     public Duke(String filePath, String folderPath) {
         ui = new Ui();
-        storage = new Storage(folderPath, filePath);
+        storage = new Storage(getJarFilePath()+folderPath, getJarFilePath()+filePath);
         tasks = new TaskList();
 
         try {
@@ -39,7 +41,7 @@ public class Duke {
 
 
     public static void main(String[] args) throws IOException {
-       new Duke("data/tasks.txt", "data").run();
+       new Duke("/data/tasks.txt", "/data").run();
 
     }
 
@@ -50,6 +52,10 @@ public class Duke {
         }catch(NullPointerException e){
 
         }
+    }
+
+    private static String getJarFilePath() {
+        return new File(Duke.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParent().replace("%20", " ");
     }
 
 

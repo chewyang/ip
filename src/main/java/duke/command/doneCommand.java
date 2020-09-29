@@ -1,5 +1,9 @@
 package duke.command;
 
+/**
+ * Sets a task as done
+ */
+
 public class doneCommand extends Command{
 
     private final int listNum;
@@ -9,7 +13,9 @@ public class doneCommand extends Command{
 
     }
 
-    //sets the task as done
+    /**
+     * Sets the task as done if the index is within the number of tasks in the list
+     */
     @Override
     public void execute() {
         try {

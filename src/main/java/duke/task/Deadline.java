@@ -1,5 +1,9 @@
 package duke.task;
 
+/**
+ * Represents a deadline task in the tasklist
+ */
+
 public class Deadline extends Task {
     protected String deadline;
 
@@ -7,10 +11,6 @@ public class Deadline extends Task {
     public Deadline(String description, String deadline) {
         super(description);
         this.deadline=deadline;
-        //only print acknowledgement message if task added is from the file
-//        if(!isFromFile) {
-//            printAckMsg();
-//        }
     }
 
     @Override

@@ -3,12 +3,15 @@ package duke;
 import duke.command.AddTodoCommand;
 import duke.command.Command;
 import duke.task.*;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+
+/**
+ * Represents the file use to store the tasks data
+ */
 
 public class Storage {
     private File dataFile;
@@ -25,7 +28,10 @@ public class Storage {
 
     public File getDataFile(){return dataFile;}
 
-    //Creates folder and file if necessary
+    /**
+     * Creates file hierarchy if necessary
+     * @throws IOException if unsuccessful in creating new file
+     */
     private void createFileHierarchy() throws IOException {
 
         if(dataFolder.exists()) {
@@ -45,12 +51,22 @@ public class Storage {
     }
 
     //Returns the TaskList object after processing the tasks.txt file
+
+    /**
+     * Loads the {@code Duke} data from this storage file and processes it
+     * @return the task list loaded from the file
+     * @throws IOException if there were errors reading the file
+     */
     public TaskList loadData() throws IOException {
         createFileHierarchy();
         return processFile();
     }
 
-    //updates the file with the new tasklist
+    /**
+     * Updates the text file with the new tasklist after the user exits the program
+     * @param taskList the current task list in the program
+     * @throws IOException if there were errors updating the file
+     */
     public void updateFile(TaskList taskList) throws IOException {
         writeToFile(filePath, "");
         if(taskList.getTaskCounter() >0) {
@@ -62,12 +78,24 @@ public class Storage {
     }
 
 
+    /**
+     * Overwrites the text file
+     * @param filePath filepath of the text file to modify
+     * @param textToAdd text to overwrite with
+     * @throws IOException if there were errors writing to the file
+     */
     private void writeToFile(String filePath, String textToAdd) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         fw.write(textToAdd);
         fw.close();
     }
 
+    /**
+     * Appends to the text file
+     * @param filePath filepath to the text file to modify
+     * @param textToAppend text to append to the text file with
+     * @throws IOException if there were errors appending to the file
+     */
     private void appendToFile(String filePath, String textToAppend) throws IOException {
         FileWriter fw = new FileWriter(filePath, true); // create a FileWriter in append mode
         fw.write(textToAppend+ System.lineSeparator());
@@ -75,13 +103,17 @@ public class Storage {
     }
 
 
-
-    //processes the file for the tasks
+    /**
+     * Process the contents of the text file
+     * @return the task list loaded on the text file
+     * @throws IOException if there are errors opening the file
+     * @throws FileNotFoundException if the files needed is not found
+     */
     private TaskList processFile() throws IOException, FileNotFoundException {
         TaskList tasks = new TaskList();
-         // create a File for the given file path
         Scanner s = new Scanner(dataFile); // create a Scanner using the File as the source
         boolean isDone;
+        //scans the file line by line and converts them to tasks
         while (s.hasNext()) {
             Task task = null;
             String line = s.nextLine();
@@ -99,6 +131,9 @@ public class Storage {
             case "E":
                 task = new Event(words[2],words[3]);
                 break;
+            default:
+                break;
+
             }
             if(task!=null) {
                 task.isDone=isDone;

@@ -1,12 +1,22 @@
 package duke.task;
 
+/**
+ * Represents a task in the task list
+ */
 
 public class Task {
     public String description;
     public boolean isDone;
     public static int taskCounter;
 
+
+    /**
+     * Basic make up of a task
+     * @param description description of the task
+     */
+
     public Task(String description) {
+
         this.description = description;
         this.isDone = false;
         taskCounter++;
@@ -16,14 +26,14 @@ public class Task {
         return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
     }
 
-    //format of tasks shown, to be overwritten
+    //format of tasks shown, to be overridden
     @Override
     public String toString() {
         return ("["+ this.getStatusIcon()+ "] "
                 + this.description );
     }
 
-    //format of task to be written in the file, to be overwritten
+    //format of task to be written in the file, to be overridden
     public String toStringFile(){
         return null;
     }

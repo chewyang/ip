@@ -1,16 +1,18 @@
 package duke.task;
 
+/**
+ * Represents an event task in the tasklist
+ */
+
 public class Event extends Task {
     protected String time;
+
 
 
     public Event(String description, String time) {
         super(description);
         this.time =time;
-        //only print acknowledgement message if task added is from the file
-//        if(!isFromFile) {
-//            printAckMsg();
-//        }
+
     }
 
     @Override

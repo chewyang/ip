@@ -23,7 +23,7 @@ public class Event extends Task {
 
     //format of task to be written in the file
     @Override
-    public String toStringFile(){
+    public String toStringFile() {
         int isDoneInt = isDone? 1:0;
         return ("E | "+ isDoneInt + " | "
                 + this.description +" | "+this.time);

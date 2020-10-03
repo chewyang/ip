@@ -7,11 +7,10 @@ import duke.task.Task;
  * Adds a deadline task to the task list
  */
 
-public class AddDeadlineCommand extends Command{
+public class AddDeadlineCommand extends Command {
 
     private final Task deadlineToAdd;
     private final boolean isFromFile;
-
 
     /**
      * Creates a new deadline task

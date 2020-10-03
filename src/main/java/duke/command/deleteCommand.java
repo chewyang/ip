@@ -4,7 +4,7 @@ package duke.command;
  * Deletes a task from the task list
  */
 
-public class deleteCommand extends Command{
+public class deleteCommand extends Command {
 
     private final int listNum;
 
@@ -23,7 +23,6 @@ public class deleteCommand extends Command{
         }catch(IndexOutOfBoundsException e ){
             System.out.println("          Invalid index!");
         }
-
     }
 
 }

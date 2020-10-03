@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- *  Parses the user input
+ *  Parses the user input.
  */
 
 public class Parser {
@@ -20,7 +20,7 @@ public class Parser {
     }
 
     /**
-     *  parses user input into command for execution
+     * parses user input into command for execution.
      * @param userInput full user input string
      * @return the command based on the user input
      */
@@ -42,7 +42,10 @@ public class Parser {
             return checkValidIndex(userInput, "delete");
         case("find"):
             return prepareFind(userInput);
+        default:
+            break;
         }
+
         return null;
     }
 
@@ -68,8 +71,8 @@ public class Parser {
 
     /**
      * Parses arguments in the context of the add Deadline task.
-     * Checks if the user has input the deadline field , '/by' keyword and deadline
-     * * @param userInput full user input
+     * Checks if the user has input the deadline field , '/by' keyword and deadline.
+     * @param userInput full user input
      * @return the prepared command
      */
 
@@ -86,7 +89,7 @@ public class Parser {
             //obtains description of deadline task
             description = userInput.substring(userInput.indexOf(" ") + 1, userInput.indexOf(" /by"));
 
-        }catch (StringIndexOutOfBoundsException e ) {
+        }catch (StringIndexOutOfBoundsException e) {
             ui.printLn("Missing '/by' keyword!");
             return null;
         }
@@ -117,7 +120,7 @@ public class Parser {
 
     private Command prepareEventArgs(String userInput, boolean isFromFile) {
 
-        String description=null;
+        String description = null;
         try {
             userInput.substring(0, userInput.indexOf(" "));
         } catch (StringIndexOutOfBoundsException e){
@@ -169,7 +172,7 @@ public class Parser {
     }
 
     /**
-     * Checks the validity of the index given by the user to delete or set the task as done
+     * Checks the validity of the index given by the user to delete or set the task as done.
      * @param word string to parse as index number
      * @param cmdType to check which command is using this method
      * @return the command to delete or set as done if index parsed is valid
@@ -198,7 +201,7 @@ public class Parser {
     }
 
     /**
-     * Parses arguments in the context of the find command
+     * Parses arguments in the context of the find command.
      * @param userInput raw user input
      * @return the prepared command
      */
@@ -210,7 +213,7 @@ public class Parser {
 
 
     /**
-     * Checks validity of the user inputted string as a datetime object
+     * Checks validity of the user inputted string as a datetime object.
      * @param dateTime string to be parsed
      * @return the converted string if the datetime string parsed is valid
      */

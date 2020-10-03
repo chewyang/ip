@@ -8,6 +8,7 @@ import duke.task.Task;
  */
 
 public class AddEventCommand extends Command{
+
     private final Task eventToAdd;
     private final boolean isFromFile;
 
@@ -22,7 +23,6 @@ public class AddEventCommand extends Command{
         this.isFromFile = isFromFile;
 
     }
-
 
     @Override
     public void execute() {

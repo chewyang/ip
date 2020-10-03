@@ -15,7 +15,7 @@ public class findCommand extends Command {
     @Override
     public void execute() {
         TaskList taskList = new TaskList();
-        for(int i=0; i < tasks.getTaskCounter(); i++){
+        for(int i = 0; i < tasks.getTaskCounter(); i++){
             if(tasks.getTask(i).toString().contains(key)){
                 taskList.addNewTask(tasks.getTask(i), false);
             }

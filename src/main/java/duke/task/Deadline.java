@@ -10,7 +10,7 @@ public class Deadline extends Task {
 
     public Deadline(String description, String deadline) {
         super(description);
-        this.deadline=deadline;
+        this.deadline = deadline;
     }
 
     @Override
@@ -21,7 +21,7 @@ public class Deadline extends Task {
 
     //format of task to be written in the file
     @Override
-    public String toStringFile(){
+    public String toStringFile() {
         int isDoneInt = isDone? 1:0;
         return ("D | "+ isDoneInt + " | "
                 + this.description +" | "+this.deadline);

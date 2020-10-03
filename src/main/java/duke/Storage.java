@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * Represents the file use to store the tasks data
+ * Represents the file use to store the tasks data.
  */
 
 public class Storage {
@@ -19,7 +19,7 @@ public class Storage {
     private String filePath;
 
 
-    public Storage(String folderDir, String fileDir){
+    public Storage(String folderDir, String fileDir) {
 
         dataFile = new File(fileDir);
         dataFolder = new File(folderDir);
@@ -29,7 +29,7 @@ public class Storage {
     public File getDataFile(){return dataFile;}
 
     /**
-     * Creates file hierarchy if necessary
+     * Creates file hierarchy if necessary.
      * @throws IOException if unsuccessful in creating new file
      */
     private void createFileHierarchy() throws IOException {
@@ -53,7 +53,7 @@ public class Storage {
     //Returns the TaskList object after processing the tasks.txt file
 
     /**
-     * Loads the {@code Duke} data from this storage file and processes it
+     * Loads the {@code Duke} data from this storage file and processes it.
      * @return the task list loaded from the file
      * @throws IOException if there were errors reading the file
      */
@@ -63,7 +63,7 @@ public class Storage {
     }
 
     /**
-     * Updates the text file with the new tasklist after the user exits the program
+     * Updates the text file with the new tasklist after the user exits the program.
      * @param taskList the current task list in the program
      * @throws IOException if there were errors updating the file
      */
@@ -79,7 +79,7 @@ public class Storage {
 
 
     /**
-     * Overwrites the text file
+     * Overwrites the text file.
      * @param filePath filepath of the text file to modify
      * @param textToAdd text to overwrite with
      * @throws IOException if there were errors writing to the file
@@ -91,7 +91,7 @@ public class Storage {
     }
 
     /**
-     * Appends to the text file
+     * Appends to the text file.
      * @param filePath filepath to the text file to modify
      * @param textToAppend text to append to the text file with
      * @throws IOException if there were errors appending to the file
@@ -104,7 +104,7 @@ public class Storage {
 
 
     /**
-     * Process the contents of the text file
+     * Process the contents of the text file.
      * @return the task list loaded on the text file
      * @throws IOException if there are errors opening the file
      * @throws FileNotFoundException if the files needed is not found
@@ -121,7 +121,7 @@ public class Storage {
             String firstCommand= words[0];
             isDone= words[1].equals("1");
 
-            switch(firstCommand){
+            switch(firstCommand) {
             case "T":
                 task = new Todo(words[2]);
                 break;

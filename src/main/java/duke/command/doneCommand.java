@@ -10,7 +10,6 @@ public class doneCommand extends Command{
 
     public doneCommand(int listNum) {
             this.listNum = listNum;
-
     }
 
     /**
@@ -24,7 +23,6 @@ public class doneCommand extends Command{
         }catch(IndexOutOfBoundsException e ){
             System.out.println("          Invalid index!");
         }
-
     }
 
 }

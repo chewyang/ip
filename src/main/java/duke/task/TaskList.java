@@ -1,7 +1,5 @@
 package duke.task;
 
-import duke.task.Task;
-
 import java.util.ArrayList;
 
 /**
@@ -22,13 +20,12 @@ public class TaskList {
         taskCounter =0;
     }
 
-
     public void addNewTask(Task task, boolean isFromFile) {
         tasks.add(task);
         taskCounter++;
         //Only print the acknowledgement message if the updates are from the file
         if(!isFromFile) {
-            printAckMsg();
+            printAcknowledgementMessage();
         }
     }
 
@@ -48,7 +45,7 @@ public class TaskList {
     }
 
     /**
-     * Prints the full list of tasks or the list of matching tasks from the {@code find} command
+     * Prints the full list of tasks or the list of matching tasks from the {@code find} command.
      * @param isMatching checks if this method needs to list the full or matching task list
      */
     public void printList(boolean isMatching){
@@ -71,7 +68,7 @@ public class TaskList {
 
     }
 
-    public void printAckMsg() {
+    public void printAcknowledgementMessage() {
         String ackMsg ="          ____________________________________________________________\n" +
                 "          Got it. I've added this task:\n"+
                 "          "+getTask(taskCounter-1).toString()+"\n"+

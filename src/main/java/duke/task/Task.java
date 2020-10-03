@@ -38,7 +38,7 @@ public class Task {
         return null;
     }
 
-    public void printMsg(String cmd){
+    public void printMsg(String cmd) {
         String msg ="          ____________________________________________________________\n" +
                 "          Got it. I've marked this task as "+cmd+":\n"+
                 "          "+toString()+"\n"+
@@ -46,12 +46,4 @@ public class Task {
         System.out.println(msg);
     }
 
-//    public void printAckMsg() {
-//        String ackMsg ="          ____________________________________________________________\n" +
-//                "          Got it. I've added this task:\n"+
-//                "          "+toString()+"\n"+
-//                "          Now you have "+  +" in the list.\n"+
-//                "          ____________________________________________________________";
-//        System.out.println(ackMsg);
-//    }
 }
